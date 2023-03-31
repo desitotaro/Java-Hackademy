@@ -32,4 +32,21 @@ public class GenericArray<T> {
         return result;
     }
     
+    public List<T> isPrime()
+    {
+        List<T> result = new ArrayList<T>();
+        // Un numero è primo quando è divisibile per se stesso
+        // Quando non è divisibile per tutti i numeri che vanno da 2 a n - 1
+        
+        return result;
+    }
+    
+    public boolean isPrime(Integer num)
+    {
+        for (int i = 2; i < num / 2; i++) {
+            //se il numero che sto controllando viene diviso dall'indice, allora ritorna false
+            if(num % i == 0) return false;
+        }
+        return true;
+    }
 }
