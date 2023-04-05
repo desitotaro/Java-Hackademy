@@ -14,16 +14,16 @@ INSERT into libri(titolo, prezzo, autore_id)
 value('Harry Potter e la Camera dei Segreti', 10, 1);
 
 INSERT into libri(titolo, prezzo, autore_id)
-value('Angeli e Demoni', 12, 2);
+value('Angeli e Demoni', 12, 3);
 
 INSERT into libri(titolo, prezzo, autore_id)
-value('Inferno', 12, 2);
+value('Inferno', 12, 3);
 
 INSERT into libri(titolo, prezzo, autore_id)
-value('Dieci piccoli indiani', 13, 3);
+value('Dieci piccoli indiani', 13, 2);
 
 INSERT into libri(titolo, prezzo, autore_id)
-value('Poirot sul Nilo', 13, 3);
+value('Poirot sul Nilo', 13, 2);
 
 INSERT into editori(nome)
 value('Hoepli');
