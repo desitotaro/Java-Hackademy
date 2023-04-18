@@ -14,6 +14,7 @@ import it.aulab.springbootcontroller.model.Post;
 import it.aulab.springbootcontroller.repository.AuthorRepository;
 import it.aulab.springbootcontroller.repository.PostRepository;
 import jakarta.transaction.Transactional;
+import it.aulab.springbootcontroller.util.exception.AuthorBadRequest;
 import it.aulab.springbootcontroller.util.exception.AuthorNotFound;
 
 @Service("authorService")
@@ -78,26 +79,64 @@ public class AuthorServiceImpl implements AuthorService{
         postRepository.save(p2);
 }
 
-    @Override
-    public List<Author> read(String firstname, String lastname) {
-        if (firstname != null && lastname != null) {
-            return authorRepository.findByFirstnameAndLastname(firstname, lastname);
-        } else if (firstname != null) {
-            return authorRepository.findByFirstname(firstname);
-        } else if (lastname != null) {
-            return authorRepository.findByLastname(lastname);
-        } else {
-            return authorRepository.findAll();
-        }
-    }
-    
-    @Override
-	public Author create(Author author) {
-		return authorRepository.save(author);
+@Override
+	public List<AuthorDTO> readAll() {
+		List<AuthorDTO> dtos = new ArrayList<AuthorDTO>();
+
+		for (Author author: authorRepository.findAll()) {
+			dtos.add(modelMapper.map(author, AuthorDTO.class));
+		}
+
+		return dtos;
 	}
 
-    @Override
-	public Author update(Long id, Author author) throws Exception {
+	@Override
+	public List<AuthorDTO> read(String firstname, String lastname) {
+		List<AuthorDTO> dtos = new ArrayList<AuthorDTO>();
+		List<Author> authors;
+
+        if (firstname != null && lastname != null) {
+            authors = authorRepository.findByFirstnameAndLastname(firstname, lastname);
+        } else if (firstname != null) {
+            authors = authorRepository.findByFirstname(firstname);
+        } else if (lastname != null) {
+            authors = authorRepository.findByLastname(lastname);
+        } else {
+            authors = authorRepository.findAll();
+        }
+
+		for (Author author: authors) {
+			dtos.add(modelMapper.map(author, AuthorDTO.class));
+		}
+
+		return dtos;
+	}
+
+	@Override
+	public AuthorDTO readOne(Long id) throws Exception {
+		Optional<Author> optionalAuthor = authorRepository.findById(id);
+        if (optionalAuthor.isPresent()) {
+            return modelMapper.map(optionalAuthor.get(), AuthorDTO.class);
+        }
+        throw new AuthorNotFound();
+	}
+
+@Override
+	public AuthorDTO create(Author author) throws Exception {
+	
+		if (author.getFirstname() == null || author.getLastname() == null || author.getEmail() == null) {
+			if (author.getFirstname() == null)
+				throw new AuthorBadRequest("Firstname is required");
+			if (author.getLastname() == null)
+				throw new AuthorBadRequest("Lastname is required");
+			if (author.getEmail() == null)
+				throw new AuthorBadRequest("Email is required");
+		}
+		return modelMapper.map(authorRepository.save(author), AuthorDTO.class);
+	}
+
+	@Override
+	public AuthorDTO update(Long id, Author author) throws Exception {
         Optional<Author> dbOptionalAuthor = authorRepository.findById(id);
         if (dbOptionalAuthor.isPresent()) {
             Author dbAuthor = dbOptionalAuthor.get();
@@ -105,12 +144,11 @@ public class AuthorServiceImpl implements AuthorService{
             dbAuthor.setLastname(author.getLastname());
             dbAuthor.setEmail(author.getEmail());
             authorRepository.save(dbAuthor);
-            return dbAuthor;
+            return modelMapper.map(dbAuthor, AuthorDTO.class);
         }
         throw new AuthorNotFound();
 	}
 
- 
 	@Override
 	public String delete(Long id) throws Exception {
 		if (authorRepository.findById(id).isPresent()) {
@@ -120,26 +158,6 @@ public class AuthorServiceImpl implements AuthorService{
         throw new AuthorNotFound();
 	}
 
-    @Override
-    public List<AuthorDTO> readAll() {
-        List<AuthorDTO> dtos = new ArrayList<AuthorDTO>();
-
-		for (Author author: authorRepository.findAll()) {
-			dtos.add(modelMapper.map(author, AuthorDTO.class));
-		}
-
-		return dtos;
-
-    }
-
-    @Override
-    public Author readOne(Long id) throws Exception {
-		Optional<Author> optionalAuthor = authorRepository.findById(id);
-        if (optionalAuthor.isPresent()) {
-            return optionalAuthor.get();
-        }
-        throw new AuthorNotFound();
-	}
 
 
 

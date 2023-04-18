@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import it.aulab.springbootcontroller.dto.AuthorDTO;
 import it.aulab.springbootcontroller.model.Author;
 import it.aulab.springbootcontroller.service.AuthorService;
 
@@ -26,7 +27,7 @@ public class AuthorRestController {
     private AuthorService authorService;
 
     @GetMapping()
-    public List<Author> getAll(
+    public List<AuthorDTO> getAll(
         @RequestParam(name = "firstname", required = false) String firstname, 
         @RequestParam(name = "lastname", required = false) String lastname
     ){
@@ -34,7 +35,7 @@ public class AuthorRestController {
     } 
     
     @GetMapping("{id}")
-    public Author getOne(
+    public AuthorDTO getOne(
         @PathVariable("id") Long id
     ) throws Exception {
         return authorService.readOne(id);
@@ -42,12 +43,13 @@ public class AuthorRestController {
 
     @PostMapping
     @ResponseStatus(value = HttpStatus.CREATED)
-    public Author post(@RequestBody Author author) {
+    public AuthorDTO post(@RequestBody Author author) throws Exception {
         return authorService.create(author);
     }
 
+
     @PutMapping("{id}")
-    public Author put(@PathVariable("id") Long id, @RequestBody Author author) throws Exception {
+    public AuthorDTO put(@PathVariable("id") Long id, @RequestBody Author author) throws Exception {
         return authorService.update(id, author);
     }
 
@@ -57,5 +59,4 @@ public class AuthorRestController {
         return authorService.delete(id);
     }
 
-    
 }

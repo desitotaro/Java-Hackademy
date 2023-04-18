@@ -4,6 +4,7 @@ public class PostDTO {
     
     private String title;
     private String body;
+    private Integer bodyLenght;
     private String authorFirstname;
     private String authorLastname;
     private String authorEmail;
@@ -37,5 +38,11 @@ public class PostDTO {
     }
     public void setAuthorEmail(String authorEmail) {
         this.authorEmail = authorEmail;
+    }
+    public Integer getBodyLenght() {
+        return bodyLenght;
+    }
+    public void setBodyLenght(Integer bodyLenght) {
+        this.bodyLenght = bodyLenght;
     }
 }

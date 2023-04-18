@@ -30,7 +30,7 @@ public class Author {
     private String email;
 
     @JsonIgnoreProperties({"author"})
-    @OneToMany(mappedBy = "author")
+    @OneToMany(mappedBy = "author" , orphanRemoval = true)
     private List<Post> posts = new ArrayList<Post>();
 
     public Author() {

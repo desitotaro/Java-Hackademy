@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Bean;
 
 import it.aulab.springbootcontroller.util.mapper.AuthorToAuthorDTOPropertyMap;
 import it.aulab.springbootcontroller.util.mapper.CreatePostDTOToPostPropertyMap;
+import it.aulab.springbootcontroller.util.mapper.PostToPostDTOPropertyMap;
 
 @SpringBootApplication
 public class SpringBootControllerApplication {
@@ -21,8 +22,10 @@ public class SpringBootControllerApplication {
 		ModelMapper mapper = new ModelMapper();
 		CreatePostDTOToPostPropertyMap createPostDTOToPostMap = new CreatePostDTOToPostPropertyMap();
 		AuthorToAuthorDTOPropertyMap authorToAuthorDTOPropertyMap = new AuthorToAuthorDTOPropertyMap();
+		PostToPostDTOPropertyMap postDTOPropertyMap = new PostToPostDTOPropertyMap();
 		mapper.addMappings(createPostDTOToPostMap);
 		mapper.addMappings(authorToAuthorDTOPropertyMap);
+		mapper.addMappings(postDTOPropertyMap);
 		return mapper;
 	}
 	

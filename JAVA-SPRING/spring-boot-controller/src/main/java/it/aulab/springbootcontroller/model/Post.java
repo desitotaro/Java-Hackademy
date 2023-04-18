@@ -26,18 +26,27 @@ public class Post {
 
     @Column(length = 1000, nullable = false)
     private String body;
-
-    @Column(name ="publish_date", length = 8)
+    
+    @Column(name = "publish_date", length = 8)
     private String publishDate;
 
-    @JsonIgnoreProperties({"posts"})
+    @JsonIgnoreProperties({ "posts" })
     @ManyToOne
-    //@JoinColumn(name = "author_id")
+    // @JoinColumn(name = "author_id")
     private Author author;
 
+    @JsonIgnoreProperties({ "post" })
     @OneToMany(mappedBy = "post")
     private List<Comment> comments = new ArrayList<Comment>();
-    
+
+    public List<Comment> getComments() {
+        return comments;
+    }
+
+    public void setComments(List<Comment> comments) {
+        this.comments = comments;
+    }
+
     public Post() {
     }
 
@@ -80,14 +89,5 @@ public class Post {
     public void setAuthor(Author author) {
         this.author = author;
     }
-
-    public List<Comment> getComments() {
-        return comments;
-    }
-
-    public void setComments(List<Comment> comments) {
-        this.comments = comments;
-    }
-
-   
+    
 }

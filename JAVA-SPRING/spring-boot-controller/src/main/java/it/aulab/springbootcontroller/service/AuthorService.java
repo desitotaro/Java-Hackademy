@@ -7,11 +7,12 @@ import it.aulab.springbootcontroller.model.Author;
 
 public interface AuthorService {
     List<AuthorDTO> readAll();
-    Author readOne(Long id) throws Exception;
-    List<Author> read(String firstname, String lastname);
-    Author create(Author author);
-    Author update(Long id, Author author) throws Exception;
+    List<AuthorDTO> read(String firstName, String lastName);
+    AuthorDTO readOne(Long id) throws Exception;
+    AuthorDTO create(Author author) throws Exception;
+    AuthorDTO update(Long id, Author author) throws Exception;
     String delete(Long id) throws Exception;
+
     void transaction();
     void noTransaction();
 }
