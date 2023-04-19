@@ -7,6 +7,12 @@ import org.springframework.web.bind.annotation.GetMapping;
 
 @Controller
 public class RootController {
+    
+    @GetMapping("/login")
+    public String login(Model model) {
+        return "login";
+    }
+
     @GetMapping("/")
     //se dobbiamo gestire delle liste dobbiamo sempre restituire una stringa
     // con il path che deve renderizzare
