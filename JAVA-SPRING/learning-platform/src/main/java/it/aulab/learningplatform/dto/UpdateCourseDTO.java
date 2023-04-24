@@ -2,6 +2,8 @@ package it.aulab.learningplatform.dto;
 
 import java.util.List;
 
+import it.aulab.learningplatform.model.Student;
+
 public class UpdateCourseDTO {
     //per l'update rimangono gli stessi attributi eccetto
     // per il teacher e name, che non è possibile fare l'update
@@ -10,6 +12,7 @@ public class UpdateCourseDTO {
     //modifichiamo lo studentId con due nuovi attributi
     private List<Long> addedStudentsIds;
     private List<Long> removedStudentsIds;
+    private List<Student> students;
     
     public UpdateCourseDTO() {
     }
@@ -41,6 +44,14 @@ public class UpdateCourseDTO {
 
     public void setRemovedStudentsIds(List<Long> removedStudentsIds) {
         this.removedStudentsIds = removedStudentsIds;
+    }
+
+    public List<Student> getStudents() {
+        return students;
+    }
+
+    public void setStudents(List<Student> students) {
+        this.students = students;
     }
 
 }

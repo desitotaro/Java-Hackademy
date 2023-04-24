@@ -1,7 +1,7 @@
 package it.aulab.learningplatform.model;
 
 import java.util.List;
-
+import java.util.ArrayList;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
 import jakarta.persistence.Entity;
@@ -37,7 +37,7 @@ public class Student {
     private String email;
 
     @ManyToMany(mappedBy = "students")
-    private List<Course> courses;
+    private List<Course> courses = new ArrayList<Course>();
 
     public Student() {
     }

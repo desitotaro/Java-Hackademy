@@ -8,21 +8,21 @@ import org.springframework.stereotype.Service;
 public class StudentService implements CrudService {
 
     @Override
+    public List readAll() {
+        // TODO Auto-generated method stub
+        throw new UnsupportedOperationException("Unimplemented method 'readAll'");
+    }
+
+    @Override
     public List read(Map params) {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'read'");
     }
 
     @Override
-    public List readOne(Object id) {
+    public Object readOne(Object id) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'readOne'");
-    }
-
-    @Override
-    public List readAll() {
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'readAll'");
     }
 
     @Override
@@ -32,17 +32,16 @@ public class StudentService implements CrudService {
     }
 
     @Override
-    public Object update(Object createDTO) {
+    public Object update(Object id, Object updateDTO) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'update'");
     }
 
     @Override
-    public Object delete(Object id) {
+    public Object delete(Object id) throws Exception {
         // TODO Auto-generated method stub
         throw new UnsupportedOperationException("Unimplemented method 'delete'");
     }
 
 
-    
 }

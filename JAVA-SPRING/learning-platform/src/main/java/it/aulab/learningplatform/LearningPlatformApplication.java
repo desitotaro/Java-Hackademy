@@ -5,6 +5,9 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.Bean;
 
+import it.aulab.learningplatform.util.mapping.CourseToCourseDtoPropertyMap;
+import it.aulab.learningplatform.util.mapping.CreateCourseDtoToCoursePropertyMap;
+
 @SpringBootApplication
 public class LearningPlatformApplication {
 
@@ -16,6 +19,8 @@ public class LearningPlatformApplication {
 	public ModelMapper instanceModelMapper(){
 		//Singleton, solo un singolo oggetto
 		ModelMapper mapper = new ModelMapper();
+		mapper.addMappings(new CreateCourseDtoToCoursePropertyMap());
+		mapper.addMappings(new CourseToCourseDtoPropertyMap());
 		return mapper;
 	}
 

@@ -1,14 +1,6 @@
-INSERT INTO courses (
-    name,
-    description,
-    teacher_firstname,
-    teacher_lastname,
-    date
-  )
+INSERT INTO students (firstname, lastname, email)
 VALUES (
-    'HackJava 02',
-    'Corso Spring',
-    'Mirko',
-    'Abbrescia',
-    NOW()
+    'Desirée',
+    'Totaro',
+    'desi@totaro.it'
   );
