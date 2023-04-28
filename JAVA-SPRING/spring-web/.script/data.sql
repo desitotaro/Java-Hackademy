@@ -1,8 +1,8 @@
-INSERT into prodotti (nome, descrizione, prezzo)
-values ('Maglia Lacoste', 'Maglia cotone', 100),
-       ('Maglia Diesel', 'Maglia cotone', 100),
-       ('Maglione Timberland', 'Maglione lana', 120),
-       ('Jeans Levi''s', 'Jeans cotone', 80);
+INSERT into prodotti (nome, descrizione, prezzo, netto)
+values ('Maglia Lacoste', 'Maglia cotone', 100, 80),
+       ('Maglia Diesel', 'Maglia cotone', 100, 80),
+       ('Maglione Timberland', 'Maglione lana', 120, 100),
+       ('Jeans Levi''s', 'Jeans cotone', 80, 60);
 
 INSERT into varianti (attributo, valore, prodotto_id)
 values ('colore', 'bianco', 1),

@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <div>
+        Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti laborum dolores repellat, debitis optio
+        tenetur expedita? Repudiandae voluptas dolores maiores incidunt iusto laudantium mollitia ipsa quam neque. Ex,
+        error aliquid.
+    </div>
+    <script>
+        
+        //Creiamo un method POST con Post, va implementato con il CreatePostDTO 
+        
+        let post = {
+            title: "Ciao",
+            body: `Lorem ipsum dolor sit amet consectetur adipisicing elit. Corrupti laborum dolores repellat, debitis optio
+            tenetur expedita? Repudiandae voluptas dolores maiores incidunt iusto laudantium mollitia ipsa quam neque. Ex,
+            error aliquid.`,
+            publishDate: "20230417",
+            authorId: 2,
+        };
+        //stringify serializza
+        let body = JSON.stringify(post);
+        // per inviare l'oggetto facciamo la fetch
+        // Modo consigliato, può essere una fetch assoluta o relativa
+        // configurazioni della fetch nel {}
+        fetch("/post", {method: "POST", headers: { "content-type": "application/json" }, body: body})
+        .then((res) => {
+            console.log(res.status) //dà errore se non specifichiamo il content-type, se esce 200 vuol dire che è andato a buon fine
+        });
+        console.log("print 1");
+        
+        
+        
+        fetch('/authors')
+        .then((res) => {
+            return res.json();
+        }).then((authorsList) => {
+            console.log(authorsList);
+        });
+        
+        
+    </script>
+</body>
+</html>

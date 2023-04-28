@@ -5,6 +5,8 @@ import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 // JAVA PERSISTENCE API > JPA 
 import jakarta.persistence.AttributeOverride;
 import jakarta.persistence.AttributeOverrides;
@@ -56,9 +58,11 @@ public class Course {
     private LocalDate date;
 
     @OneToMany(mappedBy = "course")
+    @JsonIgnoreProperties("course")
     private List<Lesson> lessons = new ArrayList<Lesson>();
     
     @ManyToMany
+    @JsonIgnoreProperties("courses")
     @JoinTable(
         name = "courses_students", 
         joinColumns = @JoinColumn(name = "course_id", nullable = false),

@@ -1,8 +1,9 @@
 CREATE TABLE prodotti (
     id bigint auto_increment primary key,
-    nome varchar(100),
+    nome varchar(100) not null,
     descrizione varchar(1000),
-    prezzo float check (prezzo > 0)
+    prezzo float check (prezzo > 0),
+    netto float check (netto > 0)
 );
 
 CREATE TABLE varianti (

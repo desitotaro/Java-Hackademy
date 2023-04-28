@@ -101,11 +101,6 @@ public class CourseService implements CrudService<CourseDTO, Long, CreateCourseD
         return mapper.map(dbCourse, CourseDTO.class);
     }
     
-    @Override
-    public CourseDTO delete(Long id) throws Exception{
-        // TODO Auto-generated method stub
-        throw new UnsupportedOperationException("Unimplemented method 'delete'");
-    }
     
     // implementazione per controllare se il corso esiste
     private Course exists(Long id) throws Exception {
@@ -114,6 +109,14 @@ public class CourseService implements CrudService<CourseDTO, Long, CreateCourseD
         } else {
             throw new CourseNotFound();
         }
+    }
+
+    @Override
+    public CourseDTO delete(Long id) throws Exception {
+        Course course = this.exists(id);
+        CourseDTO courseDto = mapper.map(course, CourseDTO.class);
+        courseRepository.delete(course);
+        return courseDto;
     }
 
 }

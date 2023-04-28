@@ -5,6 +5,7 @@ import java.util.List;
 import it.aulab.learningplatform.model.Student;
 
 public class UpdateCourseDTO {
+    private Long id;
     //per l'update rimangono gli stessi attributi eccetto
     // per il teacher e name, che non è possibile fare l'update
     private String description;
@@ -52,6 +53,14 @@ public class UpdateCourseDTO {
 
     public void setStudents(List<Student> students) {
         this.students = students;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
 }

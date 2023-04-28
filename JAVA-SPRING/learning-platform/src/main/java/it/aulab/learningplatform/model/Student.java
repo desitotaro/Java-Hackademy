@@ -1,6 +1,9 @@
 package it.aulab.learningplatform.model;
 
 import java.util.List;
+
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import java.util.ArrayList;
 import jakarta.persistence.Column;
 import jakarta.persistence.Embedded;
@@ -37,6 +40,7 @@ public class Student {
     private String email;
 
     @ManyToMany(mappedBy = "students")
+    @JsonIgnoreProperties("students")
     private List<Course> courses = new ArrayList<Course>();
 
     public Student() {

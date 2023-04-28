@@ -2,6 +2,8 @@ package it.aulab.learningplatform.model;
 
 import java.time.LocalDate;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
@@ -23,6 +25,7 @@ public class Lesson {
     private LocalDate date;
 
     @ManyToOne
+    @JsonIgnoreProperties("lessons")
     //L'ha presa in automatico > @Column(name = "course_id")
     private Course course;
 
